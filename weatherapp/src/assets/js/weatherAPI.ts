@@ -1,46 +1,46 @@
-let apiKey = '0a63de479cdec3863df7cb1f13d35a15';
+// let apiKey = '0a63de479cdec3863df7cb1f13d35a15';
 
-class CurrentWeather {
-  city: string;
-  currentTemp: number;
-  humidity: number;
-  high: number;
-  low: number;
-
-  constructor(
-    city: string,
-    currentTemp: number,
-    humidity: number,
-    high: number,
-    low: number
-  ) {
-    this.city = city;
-    this.currentTemp = currentTemp;
-    this.humidity = humidity;
-    this.high = high;
-    this.low = low;
-  }
-}
-
-class Weather {
-  current: CurrentWeather;
-  // forecast: ForecastWeather;
-
-  constructor(current: CurrentWeather) {
-    this.current = current;
-    // this.forecast = forecast;
+export class Weather {
+  static displayCurrentWeather(data: {
+    temp: number;
+    feels_like: number;
+    temp_min: number;
+    temp_max: number;
+    pressure: number;
+    humidity: number;
+  }) {
+    return data;
   }
 
-  fetchWeatherByCoordinates(lat: number, lon: number) {
+  static fetchWeatherByCoordinates(coords: {
+    latitude: number;
+    longitude: number;
+  }) {
     fetch(
-      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`
+      `https://api.openweathermap.org/data/2.5/weather?lat=${coords.latitude}&lon=${coords.longitude}&units=imperial&appid=0a63de479cdec3863df7cb1f13d35a15`
     )
       .then(function (response) {
         return response.json();
       })
       .then(function (data) {
         console.log(data);
-        // displayCurrentWeather(data);
+        Weather.displayCurrentWeather(data.main);
+      });
+  }
+
+  fetchCityCoordinates(cityName: string) {
+    fetch(
+      `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=0a63de479cdec3863df7cb1f13d35a15`
+    )
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        const coords = {
+          latitude: data[0].lat,
+          longitude: data[0].lon,
+        };
+        this.fetchWeatherByCoordinates(coords);
       });
   }
 }

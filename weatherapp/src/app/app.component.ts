@@ -18,5 +18,5 @@ import { SearchBar } from './components/search-bar.component';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'weatherapp';
+  title = 'Weather App';
 }
