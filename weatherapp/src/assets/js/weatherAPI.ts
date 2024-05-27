@@ -28,7 +28,7 @@ export class Weather {
       });
   }
 
-  fetchCityCoordinates(cityName: string) {
+  getWeather(cityName: string) {
     fetch(
       `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=0a63de479cdec3863df7cb1f13d35a15`
     )
@@ -36,11 +36,12 @@ export class Weather {
         return response.json();
       })
       .then((data) => {
+        console.log(data);
         const coords = {
           latitude: data[0].lat,
           longitude: data[0].lon,
         };
-        this.fetchWeatherByCoordinates(coords);
+        Weather.fetchWeatherByCoordinates(coords);
       });
   }
 }
