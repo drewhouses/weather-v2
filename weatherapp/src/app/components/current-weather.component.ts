@@ -4,10 +4,10 @@ import { Weather } from '../../assets/js/weatherAPI';
 @Component({
   selector: 'current-weather',
   standalone: true,
-  imports: [SearchBar],
+  imports: [],
   template: `
     <p>This my current weather component</p>
-    <p>{{ SearchBar.inputValue }}</p>
+    <p></p>
   `,
   styleUrl: '../app.component.css',
 })
