@@ -24,9 +24,12 @@ import { Weather } from '../../assets/js/weatherAPI';
 export class SearchBar {
   inputValue: string = '';
 
-  fetchWeather() {
-    console.log(this.inputValue);
+  // @Output() passCityName = new EventEmitter<string>();
+
+  async fetchWeather() {
     const weather = new Weather();
-    weather.getWeather(this.inputValue);
+    let data = await weather.getWeather(this.inputValue);
+    console.log(data);
+    // this.passCityName.emit();
   }
 }
