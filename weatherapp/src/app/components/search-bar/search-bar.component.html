@@ -1,0 +1,14 @@
+<label class="label">Find Weather for any city</label>
+<div class="container column is-one-third">
+  <input
+    class="input is-primary is-medium is-rounded is-one-third search-text"
+    type="text"
+    [(ngModel)]="inputValue"
+    city="inputValue"
+  />
+  <app-button
+    city="{{ inputValue }}"
+    text="Hello"
+    (passWeatherData)="onWeatherDataPassed($event)"
+  ></app-button>
+</div>
