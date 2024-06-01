@@ -10,6 +10,15 @@ export class SearchBarComponent {
   inputValue: string = '';
 
   onWeatherDataPassed(weatherData: any) {
-    console.log(weatherData);
+    console.log(weatherData.temp);
   }
 }
+
+// interface weatherData {
+//   feels_like: number;
+//   humidity: number;
+//   pressure: number;
+//   temp: number;
+//   temp_max: number;
+//   temp_min: number;
+// }
